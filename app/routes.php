@@ -17,6 +17,7 @@ Route::resource('fuel', 'FuelController');
 Route::resource('settings', 'SettingsController');
 Route::resource('stats', 'StatsController');
 Route::resource('tax', 'TaxController');
+Route::resource('car', 'CarController');
 
 //Migrations
 Route::get('/artisan/migrate',  function() {

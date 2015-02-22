@@ -87,7 +87,7 @@ Route::filter('csrf', function()
 Route::filter('have_car', function()
 {
 	if (Auth::user()->has_car == 0){
-            return Redirect::to('/settings/create')
+            return Redirect::to('/car/create')
                     ->withMessage('First you should add a car!');
 	}
 });
