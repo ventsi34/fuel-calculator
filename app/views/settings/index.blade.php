@@ -12,6 +12,6 @@
     </div>
     <div>
         {{ link_to('car/'. $car->car_id .'/edit/', 'Change your car info') }}
-        {{ link_to('settings/create', 'Change your password') }}
+        {{ link_to('settings/'. Auth::id() .'/edit', 'Change your password') }}
     </div>
 @stop

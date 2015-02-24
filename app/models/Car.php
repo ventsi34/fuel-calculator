@@ -20,6 +20,4 @@ class Car extends BaseModel implements UserInterface, RemindableInterface {
             'car_km' => 'sometimes|required|integer',
             'user_id' => 'sometimes|required|integer'
         ];
-        
-        public function setUpdatedAtAttribute($value){}
 }

@@ -35,7 +35,7 @@ class CarController extends \BaseController {
        if(!$this->car->validation()) {
            return Redirect::back()
                    ->withInput()
-                   ->withError($this->user->getValidationMessage());
+                   ->withErrors($this->car->getValidationMessage());
        }
        $this->car->create([
            'car_mark' => Input::get('car_mark'),
@@ -57,6 +57,7 @@ class CarController extends \BaseController {
     */
    public function edit($id)
    {
+       $this->beforeFilter('have_car');
        $carInfo = $this->car->find(Auth::id());
        return View::make('car.edit')->withCar($carInfo);
    }
@@ -70,18 +71,19 @@ class CarController extends \BaseController {
     */
    public function update($id)
    {
+        $this->beforeFilter('have_car');
         $this->car->fill(Input::all());
         $this->car->user_id = Auth::id();
         if(!$this->car->validation()) {
             return Redirect::back()
                     ->withInput()
-                    ->withError($this->user->getValidationMessage());
+                    ->withErrors($this->car->getValidationMessage());
         }
-        $user = User::find(Auth::id());
-        $user->car_mark = Input::get('car_mark');
-        $user->car_model = Input::get('car_model');
-        $user->car_km = Input::get('car_km');
-        $user->save();
+        $car = Car::where("user_id", "=", Auth::id())->first();
+        $car->car_mark = Input::get('car_mark');
+        $car->car_model = Input::get('car_model');
+        $car->car_km = Input::get('car_km');
+        $car->save();
         return Redirect::to('/settings')
                 ->withMessage('Your car was edited successful!');
    }
