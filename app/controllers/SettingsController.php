@@ -52,16 +52,14 @@ class SettingsController extends \BaseController {
                     ->withInput()
                     ->withErrors($this->user->getValidationMessage());
         }
-        $checkPassword = 
-            User::where('user_id', '=', Auth::id())
-            ->where('password', '=', Hash::make(Input::get('old_password')))
-            ->count();
-        //$queries = DB::getQueryLog();
-        //return end($queries);
-        //return $checkPassword;
-        if($checkPassword != 1) {
-            
+        $user = User::where('user_id', '=', Auth::id())->first();
+        if(!Hash::check(Input::get('old_password'), $user->password)) {
+            return Redirect::back()
+                    ->withMessage('Old password do not match!');
         }
+        $user->password = Hash::make(Input::get('password'));
+        $user->save();
+        return Redirect::to('/logout');
     }
 
 }

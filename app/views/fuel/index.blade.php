@@ -1,5 +1,6 @@
 @extends('layouts.skeleton')
 
 @section('content')
-    fuel
+    
+    {{ link_to('fuel/create', 'Add trip') }}
 @stop

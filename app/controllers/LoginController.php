@@ -22,6 +22,7 @@ class LoginController extends BaseController {
     
     public function destroy() {
         Auth::logout();
+        Session::flush();
         return Redirect::to('/');
     }
 }

@@ -1,6 +1,9 @@
 @extends('layouts.skeleton')
 
 @section('content')
+    @if (Session::has('message'))
+        <p>{{ Session::get('message') }}</p>
+    @endif
     {{ Form::open(['url' => 'settings/'.Auth::id(), 'method' => 'put']) }}
         <h4>Profile settings</h4>
         <p>{{ Auth::user()->email }}</p>

@@ -20,4 +20,9 @@ class Car extends BaseModel implements UserInterface, RemindableInterface {
             'car_km' => 'sometimes|required|integer',
             'user_id' => 'sometimes|required|integer'
         ];
+        
+        public function getUserCarId($user) {
+            return DB::table('cars')
+                    ->where('user_id', '=', $user)->first()->car_id;
+        }
 }

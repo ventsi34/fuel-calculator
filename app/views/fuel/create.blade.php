@@ -2,11 +2,12 @@
 
 @section('content')
     {{ Form::open(['route' => 'fuel.store']) }}
+        @if($data['chargesCount'] > 0)
         <div>
             <h4>Old fuel</h4>
             <div>
                 {{ Form::label('kilometres', 'km:') }}
-                {{ Form::number('trip', Input::old('trip')) }}
+                {{ Form::text('trip', Input::old('trip')) }}
                 {{ $errors->first('trip') }}
             </div>
             <div>
@@ -15,11 +16,12 @@
                 {{ $errors->first('trip_type_id') }}
             </div>
         </div>
+        @endif
         <div>
             <h4>New fuel</h4>
             <div>
                 {{ Form::label('quantity', 'Quantity/Litres:') }}
-                {{ Form::number('quantity', Input::old('quantity')) }}
+                {{ Form::text('quantity', Input::old('quantity')) }}
                 {{ $errors->first('quantity') }}
             </div>
             <div>
