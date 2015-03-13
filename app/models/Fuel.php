@@ -15,11 +15,10 @@ class Fuel extends BaseModel implements UserInterface, RemindableInterface {
             ['quantity', 'trip', 'trip_type_id', 'fuel_station_id', 'car_id'];
         
         protected $validationRules = [
-            'quantity' => 'sometimes|required',
-            'trip' => 'sometimes|required',
+            'quantity' => array('sometimes', 'required', 'regex:/^\d*(\.\d{1,2})?$/'),
+            'trip' => 'sometimes|required|integer',
             'trip_type_id' => 'sometimes|required|integer',
             'fuel_station_id' => 'sometimes|required|integer',
             'car_id' => 'required|integer'
         ];
-        //array('sometimes', 'required', 'regex:/^[+-]?\d+\.\d+, ?[+-]?\d+\.\d+$/')
 }
