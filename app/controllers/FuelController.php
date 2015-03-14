@@ -34,10 +34,24 @@ class FuelController extends \BaseController {
                     ON t.`trip_type_id` = f.`trip_type_id`
                 LEFT JOIN `fuel_stations` as `s`
                     ON s.`fuel_station_id` = f.`fuel_station_id`
+                WHERE
+                    `f`.`is_created` = 1
                 ORDER 
                     BY `created_at` DESC';
         $res = DB::select(DB::raw($sql));
-        return View::make('fuel.index')->withTrips($res);
+        $carId = $this->car->getUserCarId(Auth::id());
+        $lastCharge = $this->fuel
+                    ->where('car_id', '=', $carId)
+                    ->where('is_created', '=', 0)
+                    ->orderBy('created_at', 'DESC')
+                    ->first();
+        $lastQuantity = 0;
+        if(!empty($lastCharge)){
+            $lastQuantity = $lastCharge->quantity;
+        }
+        return View::make('fuel.index')
+                ->withTrips($res)
+                ->withFuel($lastQuantity);
     }
 
 
@@ -68,7 +82,10 @@ class FuelController extends \BaseController {
         $input = Input::all();
         $carId = $this->car->getUserCarId(Auth::id());
         $input['car_id'] = $carId;
-        if(!$this->fuel->fill($input)->validation()) {
+        $this->fuel->quantity = Input::get('quantity');
+        $this->fuel->fuel_station_id = Input::get('fuel_station_id');
+        $this->fuel->car_id = $carId;
+        if(!$this->fuel->validation()) {
             return Redirect::back()
                     ->withInput()
                     ->withErrors($this->fuel->getValidationMessage());
@@ -77,15 +94,14 @@ class FuelController extends \BaseController {
         if($chargesCount > 0) {
             $lastCharge = $this->fuel
                     ->where('car_id', '=', $carId)
+                    ->where('is_created', '=', 0)
                     ->orderBy('created_at', 'DESC')
                     ->first();
             $lastCharge->trip = Input::get('trip');
             $lastCharge->trip_type_id = Input::get('trip_type_id');
+            $lastCharge->is_created = 1;
             $lastCharge->save();
         }
-        $this->fuel->quantity = Input::get('quantity');
-        $this->fuel->fuel_station_id = Input::get('fuel_station_id');
-        $this->fuel->car_id = $carId;
         $this->fuel->save();
         return Redirect::to('/fuel')
                 ->withMessage('The fuel was added successfully!');

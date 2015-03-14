@@ -15,10 +15,25 @@ class Fuel extends BaseModel implements UserInterface, RemindableInterface {
             ['quantity', 'trip', 'trip_type_id', 'fuel_station_id', 'car_id'];
         
         protected $validationRules = [
-            'quantity' => array('sometimes', 'required', 'regex:/^\d*(\.\d{1,2})?$/'),
-            'trip' => 'sometimes|required|integer',
+            'quantity' => 
+                array('sometimes', 'required', 'regex:/^\d*(\.\d{1,2})?$/', 'min:1'),
+            'trip' => 'sometimes|required|integer|min:1',
             'trip_type_id' => 'sometimes|required|integer',
             'fuel_station_id' => 'sometimes|required|integer',
             'car_id' => 'required|integer'
         ];
+        
+        public function validation() {
+            if(!parent::validation()) {
+                return false;
+            }
+            if(isset($this->quantity)) {
+                if(!$this->quantity > 0) {
+                    $this->validationMessage['quantity'] = 
+                                                ["Invalid value of quantity!"];
+                    return false;
+                }
+            }
+            return true;
+        }
 }

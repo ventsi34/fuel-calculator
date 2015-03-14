@@ -2,6 +2,9 @@
 
 @section('content')
     {{ link_to('fuel/create', 'Add trip') }}
+    @if ($fuel !== 0)
+    <p>Your last added fuel is {{ $fuel }} liters.</p>
+    @endif
     @if (count($trips) > 0)
     <table border="1">
         <tr>
