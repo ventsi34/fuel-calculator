@@ -18,7 +18,7 @@ class AddingFuelTable extends Migration {
                 $table->float('quantity');
                 $table->integer('trip');
                 $table->integer('trip_type_id');
-                $table->integer('fuel station_id');
+                $table->integer('fuel_station_id');
                 $table->integer('car_id');
                 $table->timestamps();
                 $table->softDeletes();
