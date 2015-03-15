@@ -73,9 +73,9 @@ class FuelController extends \BaseController {
 
 
     /**
-     * Store a newly created resource in storage.
+     * Store a newly fuel in db
      *
-     * @return Response
+     * @return Redirect to index page
      */
     public function store()
     {
@@ -100,6 +100,11 @@ class FuelController extends \BaseController {
             $lastCharge->trip = Input::get('trip');
             $lastCharge->trip_type_id = Input::get('trip_type_id');
             $lastCharge->is_created = 1;
+            if(!$lastCharge->validation()) {
+                return Redirect::back()
+                   ->withInput()
+                   ->withErrors($lastCharge->getValidationMessage());
+            }
             $lastCharge->save();
         }
         $this->fuel->save();
