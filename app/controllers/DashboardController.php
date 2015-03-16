@@ -3,11 +3,15 @@
 class DashboardController extends \BaseController {
         
         protected $user;
-    
-        public function __construct(User $user) {
+        protected $fuel;
+        protected $car;
+        
+        public function __construct(User $user, Fuel $fuel, Car $car) {
             $this->beforeFilter('auth');
             $this->beforeFilter('have_car');
             $this->user = $user;
+            $this->fuel = $fuel;
+            $this->car = $car;
         }
 
 
@@ -18,7 +22,10 @@ class DashboardController extends \BaseController {
 	 */
 	public function index()
 	{
-            return View::make('dashboard.index');
+            $carId = $this->car->getUserCarId(Auth::id());
+            $averageConsumption = $this->fuel->getAverageConsumption($carId);
+            return View::make('dashboard.index')
+                    ->with('averageConsumption', $averageConsumption);
 	}
 
 

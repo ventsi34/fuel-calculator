@@ -33,12 +33,8 @@ class StatsController extends \BaseController {
         $carId = $this->car->getUserCarId(Auth::id());
         $data = [];
         if($defaultFilter === 'average') {
-            $averageConsumption = $this->fuel
-                                ->select(DB::raw('AVG(`trip` / `quantity`) as `average`'))
-                                ->where('is_created', '=', '1')
-                                ->where('car_id', '=', $carId)
-                                ->first();
-            $data['averageConsumption'] = round($averageConsumption['average'], 2);
+            $data['averageConsumption'] = 
+                    $this->fuel->getAverageConsumption($carId);
         }
         return View::make('stats.index')
                 ->with('defaultFilter', $defaultFilter)

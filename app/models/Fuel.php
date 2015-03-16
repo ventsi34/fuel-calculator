@@ -23,6 +23,16 @@ class Fuel extends BaseModel implements UserInterface, RemindableInterface {
             'car_id' => 'required|integer'
         ];
         
+        public function getAverageConsumption($carId) {
+            $averageConsumption = $this
+                    ->select(DB::raw('AVG(`trip` / `quantity`) as `average`'))
+                    ->where('is_created', '=', '1')
+                    ->where('car_id', '=', $carId)
+                    ->first();
+            return round($averageConsumption['average'], 2);
+        } 
+
+
         public function validation() {
             if(!parent::validation()) {
                 return false;
