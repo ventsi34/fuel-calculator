@@ -1,10 +1,15 @@
 <?php
 
 class StatsController extends \BaseController {
-        
-    public function __construct() {
+    
+    protected $fuel;
+    protected $car;
+    
+    public function __construct(Fuel $fuel, Car $car) {
         $this->beforeFilter('auth');
         $this->beforeFilter('have_car');
+        $this->fuel = $fuel;
+        $this->car = $car;
     }
 
     /**
@@ -14,7 +19,30 @@ class StatsController extends \BaseController {
      */
     public function index()
     {
-        return View::make('stats.index');
+        switch (Input::get('filter_type')) {
+            case 'average':
+                $defaultFilter = 'average';
+                break;
+            case 'byStation':
+                $defaultFilter = 'byStation';
+                break;
+            default:
+                $defaultFilter = 'average';
+                break;
+        }
+        $carId = $this->car->getUserCarId(Auth::id());
+        $data = [];
+        if($defaultFilter === 'average') {
+            $averageConsumption = $this->fuel
+                                ->select(DB::raw('AVG(`trip` / `quantity`) as `average`'))
+                                ->where('is_created', '=', '1')
+                                ->where('car_id', '=', $carId)
+                                ->first();
+            $data['averageConsumption'] = round($averageConsumption['average'], 2);
+        }
+        return View::make('stats.index')
+                ->with('defaultFilter', $defaultFilter)
+                ->withData($data);
     }
 
 

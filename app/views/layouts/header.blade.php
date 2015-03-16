@@ -8,6 +8,7 @@
         {{ HTML::style('css/bootstrap-theme.min.css'); }}
         {{ HTML::script('js/bootstrap.min.js'); }}
         {{ HTML::script('js/npm.js'); }}
+        @yield('header-addon')
     </head>
     <body>
         @yield('site')
