@@ -2,6 +2,7 @@
 
 @section('header-addon')
     {{ HTML::script('js/main.js'); }}
+    {{ HTML::script('js/Chart.min.js'); }}
 @stop
 
 @section('content')
@@ -10,8 +11,11 @@
     {{ Form::select('filter_type', [
         'average' => 'Average consumption',
         'byStation' => 'Average by fuel station'
-    ], $defaultFilter, ['class'=>'submit-on-change']) }}
+    ], $data['defaultFilter'], ['class'=>'submit-on-change']) }}
 {{ Form::close() }}
-
-
+@if ($data['defaultFilter'] == 'byStation')
+    @include('stats.station', $data)
+@else
+    @include('stats.average', $data)
+@endif
 @stop
