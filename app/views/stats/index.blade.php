@@ -12,7 +12,7 @@
         'average' => 'Average consumption',
         'byStation' => 'Average by fuel station'
     ], $data['defaultFilter'], ['class'=>'submit-on-change']) }}
-{{ Form::close() }}
+
 @if ($data['defaultFilter'] == 'byStation')
     @include('stats.station', $data)
 @else
