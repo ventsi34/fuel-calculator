@@ -1,4 +1,5 @@
-<ul>
+<ul class="main-menu clear">
+    <li>{{ link_to('/dashboard', 'Home') }}</li>
     <li>{{ link_to('/fuel', 'Fuel list') }}</li>
      <!--<li>{{ link_to('/tax', 'Taxes') }}</li>-->
     <li>{{ link_to('/stats', 'Stats') }}</li>

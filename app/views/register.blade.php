@@ -1,34 +1,34 @@
 @extends('layouts.basic')
 
 @section('header')
-<div class="col-md-5">{{ link_to('/', 'Login') }}</div>
+<div class="col-sm-12 col-md-10 col-md-offset-1">{{ link_to('/', 'Login', array('class'=>'register-link')) }}</div>
 @stop
 
 @section('content')
-    <div class="col-md-4 col-md-offset-4">
+    <div class="bottom-offset col-md-6 col-md-offset-3 col-sm-12">
         @if (Session::has('message'))
-            <h3>{{ Session::get('message') }}</h3>
-            <span>{{ link_to('/', 'Back to login') }}</span>
+            <h3 class="tcenter">{{ Session::get('message') }}</h3>
+            <div class="tcenter">{{ link_to('/', 'Back to login') }}</div>
         @else
-            <h3>Registration</h3>
+            <h3 class="tcenter bottom-offset">Registration</h3>
             {{ Session::get('message') }}
             {{ Form::open(['route' => 'register']) }}
-                <div>
+                <div class="bottom-offset">
                     {{ Form::label('email', 'Email') }}
-                    {{ Form::text('email', Input::old('email')) }}
-                    {{ $errors->first('email') }}
+                    {{ Form::text('email', Input::old('email'), array('class'=>'form-control')) }}
+                    <span class="error-msg">{{ $errors->first('email') }}<span>
                 </div>
-                <div>
+                <div class="bottom-offset">
                     {{ Form::label('password', 'Password') }}
-                    {{ Form::password('password') }}
-                    {{ $errors->first('password') }}
+                    {{ Form::password('password', array('class'=>'form-control')) }}
+                    <span class="error-msg">{{ $errors->first('password') }}<span>
                 </div>
-                <div>
+                <div class="bottom-offset">
                     {{ Form::label('repassword', 'Retype password') }}
-                    {{ Form::password('repassword') }}
-                    {{ $errors->first('repassword') }}
+                    {{ Form::password('repassword', array('class'=>'form-control')) }}
+                    <span class="error-msg">{{ $errors->first('repassword') }}<span>
                 </div>
-                {{ Form::submit('Register') }}
+                {{ Form::submit('Register', array('class'=>'remove-input-style btn-block btn-primary')) }}
             {{ Form::close() }}
         @endif
     </div>

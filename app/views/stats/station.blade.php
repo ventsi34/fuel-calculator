@@ -1,15 +1,15 @@
-<!-- {{ Form::select('fuel_station_id', $tripType) }} -->
+    {{ Form::select('fuel_station_id', $tripType, $fuel_station_id, ['class'=>'submit-on-change form-control center']) }}
 {{ Form::close() }}
+</div>
 <canvas id="chart" width="600" height="300"></canvas>
-
 <script>
     var data = {
             labels: {{ $labels }},
             datasets: [
                 {
-                    fillColor: "#F7464A",
+                    fillColor: "{{ $color }}",
                     strokeColor: "rgba(220,220,220,0.8)",
-                    highlightFill: "#FF5A5E",
+                    highlightFill: "{{ $highlight }}",
                     highlightStroke: "rgba(220,220,220,1)",
                     data: {{ $averageValue }}
                 }

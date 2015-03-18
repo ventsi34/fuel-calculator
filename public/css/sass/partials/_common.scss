@@ -1,0 +1,118 @@
+body {
+    font-family: 'Tahoma';
+    font-size: 14px;
+}
+h1, h2, h3,
+h4, h5, h6 { margin-top: 0; }
+#header {
+    background: #2D3441;
+    color: #fff;
+}
+.main-menu {
+    float: right;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    li {
+        float: left;
+        line-height: 50px;
+        padding: 0 15px;
+        a { 
+            color: #fff;
+            text-align: center;
+            text-transform: uppercase;
+            &:hover,
+            &:active,
+            &:focus {
+                text-decoration: none;
+                color: #CBCBCB;
+            }
+        }
+    }
+}
+.filter-wrapper {
+    padding: 20px 0;
+    margin-bottom: 20px;
+    .form-control { 
+        display: inline-block;
+        width: 20%;
+    }
+}
+.username { 
+    float: left;
+    line-height: 50px;
+    margin: 0;
+    padding: 0;
+}
+.main-container {
+    background-color: #F9FDFD;
+    border-radius: 0 0 10px 10px;
+    border: 1px solid #D9DCE2;
+    border-top: none;
+    margin-bottom: 15px;
+    padding-top: 15px;
+}
+.small-container {
+    background-color: #fff;
+    border: 1px solid #D9DCE2;
+    border-radius: 10px;
+    width: 180px;
+    margin: 0 auto 15px;
+    padding: 15px;
+    text-align: center;
+    p {
+        font-weight: bold;
+        font-size: 24px;
+        margin: 10px 0;
+    }
+}
+.fleft { float: left; }
+.fright { float: right; }
+.tcenter { text-align: center; }
+.valign { vertical-align: middle; }
+.ib { display: inline-block; }
+.center { 
+    margin-left: auto;
+    margin-right: auto;
+}
+.average-stat {
+    .small-container { margin-right: 60px; }
+    #chart { display: inline-block; }
+}
+.right-offset { margin-right: 20px; }
+.bottom-offset { margin-bottom: 20px; }
+.btn-lg:hover,
+.btn-lg:active,
+.btn-lg:focus,
+.register-link { text-decoration: none; }
+#chart {
+    display: block;
+    margin: 0 auto 20px;
+}
+.remove-input-style {
+    border: none;
+    border-radius: 5px;
+    line-height: 35px;
+}
+.clear:after {
+    display: block;
+    content: '';
+    clear: both;
+}
+.bg-danger {
+    font-size: 14px;
+    color: rgb(216, 99, 99);
+    padding: 10px;
+}
+.register-link {
+    color: #FFF;
+    line-height: 50px;
+    padding: 0 20px;
+    &:hover {
+        text-decoration: none;
+        color: #CBCBCB;
+    }
+}
+.error-msg { color: #ce4844; }
+.table-striped>tbody>tr:nth-of-type(odd) { background-color: #FFF; }
+.table-hover>tbody>tr:hover { background-color: #EFFFFF; }

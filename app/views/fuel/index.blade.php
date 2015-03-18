@@ -1,12 +1,14 @@
 @extends('layouts.skeleton')
 
 @section('content')
-    {{ link_to('fuel/create', 'Add trip') }}
-    @if ($fuel !== 0)
-    <p>Your last added fuel is {{ $fuel }} liters.</p>
-    @endif
+    <div class="tcenter">    
+        {{ link_to('fuel/create', 'Add trip', array('class'=>'btn-lg btn-warning ib vmiddle right-offset')) }}
+        @if ($fuel !== 0)
+        <div class="small-container ib valign">Your last added fuel is <p class="tcenter">{{ $fuel }}</p> liters</div>
+        @endif
+    </div>
     @if (count($trips) > 0)
-    <table border="1">
+    <table class="table table-striped table-hover table-responsive">
         <tr>
             <th>Model</th>
             <th>Mark</th>

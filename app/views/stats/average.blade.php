@@ -1,6 +1,9 @@
 {{ Form::close() }}
-<p>Average consumption of all information {{ $averageConsumption }} litres</p>
-<canvas id="chart" width="300" height="300"></canvas>
+</div>
+<div class="average-stat tcenter">
+    <div class="small-container ib vmiddle">Average consumption <p class="tcenter">{{ $averageConsumption }}</p> liters</div>
+    <canvas id="chart" class="valign" width="300" height="300"></canvas>
+</div>
 <script>
     var data = {{ $chartData }},
         options = {

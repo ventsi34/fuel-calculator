@@ -1,25 +1,26 @@
 @extends('layouts.basic')
 
 @section('header')
-<div class="col-md-5">{{ link_to('/register', 'Register') }}</div>
+<div class="col-sm-12 col-md-10 col-md-offset-1">{{ link_to('/register', 'Register', array('class'=>'register-link')) }}</div>
 @stop
 
 @section('content')
-    <div class="col-md-4 col-md-offset-4">
-        <h3>Login</h3>
-        @if (Session::has('error'))
-            {{ Session::get('error') }}
-        @endif
+    @if (Session::has('error'))
+        <p class="bg-danger">{{ Session::get('error') }}</p>
+    @endif
+    <div class="bottom-offset col-md-4 col-md-offset-4 col-sm-12">
+        
+        <h3 class="tcenter bottom-offset">Login</h3>
         {{ Form::open(['route' => 'login']) }}
-            <div>
+            <div class="bottom-offset">
                 {{ Form::label('email', 'Email') }}
-                {{ Form::text('email') }}
+                {{ Form::text('email', '', array('class'=>'form-control')) }}
             </div>
-            <div>
+            <div class="bottom-offset">
                 {{ Form::label('password', 'Password') }}
-                {{ Form::password('password') }}
+                {{ Form::password('password', array('class'=>'form-control')) }}
             </div>
-            {{ Form::submit('Login') }}
+            {{ Form::submit('Login', array('class'=>'remove-input-style btn-block btn-primary')) }}
         {{ Form::close() }}
     </div>
 @stop
