@@ -58,7 +58,7 @@ class CarController extends \BaseController {
    public function edit($id)
    {
        $this->beforeFilter('have_car');
-       $carInfo = $this->car->find(Auth::id());
+       $carInfo = $this->car->where('user_id', '=', Auth::id())->first();
        return View::make('car.edit')->withCar($carInfo);
    }
 
