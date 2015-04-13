@@ -19,6 +19,7 @@ class FuelController extends \BaseController {
      */
     public function index()
     {
+        $carId = $this->car->getUserCarId(Auth::id());
         $sql = 'SELECT 
                     f.`fuel_id`,
                     f.`quantity`,
@@ -36,10 +37,11 @@ class FuelController extends \BaseController {
                     ON s.`fuel_station_id` = f.`fuel_station_id`
                 WHERE
                     `f`.`is_created` = 1
+                    AND
+                    `f`.`car_id` = '.$carId.'
                 ORDER 
                     BY `created_at` DESC';
         $res = DB::select(DB::raw($sql));
-        $carId = $this->car->getUserCarId(Auth::id());
         $lastCharge = $this->fuel
                     ->where('car_id', '=', $carId)
                     ->where('is_created', '=', 0)

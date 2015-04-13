@@ -3,6 +3,10 @@
 </div>
 <canvas id="chart" width="600" height="300"></canvas>
 <script>
+    var responsive = false;
+    if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
+        responsive = true;
+    }
     var data = {
             labels: {{ $labels }},
             datasets: [
@@ -23,6 +27,7 @@
             scaleShowHorizontalLines: true,
             scaleShowVerticalLines: true,
             barShowStroke : true,
+            responsive: responsive,
             barStrokeWidth : 2,
             barValueSpacing : 5,
             barDatasetSpacing : 1,

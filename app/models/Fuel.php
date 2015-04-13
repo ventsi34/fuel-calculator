@@ -25,7 +25,7 @@ class Fuel extends BaseModel implements UserInterface, RemindableInterface {
         
         public function getAverageConsumption($carId) {
             $averageConsumption = $this
-                    ->select(DB::raw('AVG(`trip` / `quantity`) as `average`'))
+                    ->select(DB::raw('AVG((`quantity` / `trip`) * 100) as `average`'))
                     ->where('is_created', '=', '1')
                     ->where('car_id', '=', $carId)
                     ->first();

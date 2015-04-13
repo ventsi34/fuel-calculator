@@ -5,6 +5,10 @@
     <canvas id="chart" class="valign" width="300" height="300"></canvas>
 </div>
 <script>
+    var responsive = false;
+    if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
+        responsive = true;
+    }
     var data = {{ $chartData }},
         options = {
             segmentShowStroke : true,
@@ -14,6 +18,7 @@
             animationSteps : 100,
             animationEasing : "easeOutBounce",
             animateRotate : true,
+            responsive: responsive,
             animateScale : false,
             legendTemplate : "<ul class=\"<%=name.toLowerCase()%>-legend\"><% for (var i=0; i<segments.length; i++){%><li><span style=\"background-color:<%=segments[i].fillColor%>\"></span><%if(segments[i].label){%><%=segments[i].label%><%}%></li><%}%></ul>"
         },

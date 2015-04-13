@@ -124,6 +124,12 @@ h4, h5, h6 {
     text-decoration: none;
     color: #CBCBCB; }
 
+.mobile-hide {
+  display: table-cell; }
+
+.btn-lg {
+  margin-bottom: 0; }
+
 .error-msg {
   color: #ce4844; }
 
@@ -132,3 +138,31 @@ h4, h5, h6 {
 
 .table-hover > tbody > tr:hover {
   background-color: #EFFFFF; }
+
+@media (max-width: 768px) {
+  .username {
+    float: none;
+    text-align: center; }
+
+  .main-menu {
+    float: none;
+    text-align: center; }
+    .main-menu li {
+      float: none;
+      display: inline-block; }
+
+  .mobile-hide {
+    display: none; }
+
+  .average-stat .small-container {
+    margin-right: 0; }
+
+  .btn-lg {
+    margin-bottom: 10px;
+    margin-right: 0; }
+
+  #chart {
+    margin-left: -15px; }
+
+  .average-stat #chart {
+    margin-left: auto; } }

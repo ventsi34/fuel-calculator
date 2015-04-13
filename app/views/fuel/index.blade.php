@@ -10,8 +10,8 @@
     @if (count($trips) > 0)
     <table class="table table-striped table-hover table-responsive">
         <tr>
-            <th>Model</th>
-            <th>Mark</th>
+            <th class="mobile-hide">Model</th>
+            <th class="mobile-hide">Mark</th>
             <th>Fuel station</th>
             <th>Fuel quantity</th>
             <th>Trip</th>
@@ -19,8 +19,8 @@
         </tr>
         @foreach ($trips as $trip)
         <tr>
-            <td>{{ $trip->car_model }}</td>
-            <td>{{ $trip->car_mark }}</td>
+            <td class="mobile-hide">{{ $trip->car_model }}</td>
+            <td class="mobile-hide">{{ $trip->car_mark }}</td>
             <td>{{ $trip->fuel_station_name }}</td>
             <td>{{ $trip->quantity }}</td>
             <td>{{ $trip->trip }}</td>
