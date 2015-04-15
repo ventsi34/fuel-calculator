@@ -113,6 +113,8 @@ h4, h5, h6 { margin-top: 0; }
         color: #CBCBCB;
     }
 }
+.mobile-hide { display: table-cell; }
+.btn-lg { margin-bottom: 0; }
 .error-msg { color: #ce4844; }
 .table-striped>tbody>tr:nth-of-type(odd) { background-color: #FFF; }
 .table-hover>tbody>tr:hover { background-color: #EFFFFF; }

@@ -40,7 +40,7 @@ class StatsController extends \BaseController {
                     $this->fuel->getAverageConsumption($carId);
             $averageConsumptions = $this->fuel
                 ->select(DB::raw(
-                    'AVG(`trip` / `quantity`) as `value`,'.
+                    'AVG((`quantity` / `trip`) * 100) as `value`,'.
                     'trip_types.description as `label`'
                 ))
                 ->join('trip_types', 'trip_types.trip_type_id', '=', 'fuel.trip_type_id')
@@ -60,7 +60,7 @@ class StatsController extends \BaseController {
             }
             $averageConsumptions = $this->fuel
                 ->select(DB::raw(
-                    'AVG(`trip` / `quantity`) as `value`,
+                    'AVG((`quantity` / `trip`) * 100) as `value`,
                     fuel_stations.fuel_station_name as stationName,
                     fuel_stations.fuel_station_id as stationId'
                 ))

@@ -20,7 +20,7 @@ class SettingsController extends \BaseController {
      */
     public function index()
     {
-        $carInfo = $this->car->find(Auth::id());
+        $carInfo = $this->car->where('user_id', '=', Auth::id())->first();
         return View::make('settings.index')
                 ->withCar($carInfo);
     }

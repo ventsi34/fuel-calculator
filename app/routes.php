@@ -16,16 +16,16 @@ Route::resource('dashboard', 'DashboardController');
 Route::resource('fuel', 'FuelController');
 Route::resource('settings', 'SettingsController');
 Route::resource('stats', 'StatsController');
-Route::resource('tax', 'TaxController');
+//Route::resource('tax', 'TaxController');
 Route::resource('car', 'CarController');
 
 //Migrations
-Route::get('/artisan/migrate',  function() {
+/*Route::get('/artisan/migrate',  function() {
     $output = Artisan::call('migrate', array('--force' => true));
     return $output;
-});
+});*/
 
-Route::get('/artisan/rollback',  function() {
+/*Route::get('/artisan/rollback',  function() {
     $output = Artisan::call('migrate:rollback', array('--force' => true));
     return $output;
 });
@@ -36,4 +36,4 @@ Route::get('/mail',  function() {
         $message->to('ventsislav.dimitrov@imperiaonline.org', "Sender")
                 ->subject('Test message');
     });
-});
+});*/
